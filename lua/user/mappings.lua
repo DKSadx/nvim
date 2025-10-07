@@ -1,6 +1,15 @@
 -- Key mappings for AstroVim
 local keymap = vim.keymap.set
-local opts = { noremap = true, silent = true }
+
+-- # Show line separator characters as $
+-- vim.opt.list = true
+-- vim.opt.listchars = { eol = '$' }
+
+-- # Don't automatically add line separator (new line, '\n') at the end of the file so it aligns with other non-POSIX editors 
+-- # Ref: https://stackoverflow.com/questions/15639511/vim-show-newline-at-the-end-of-file
+vim.opt.endofline = false
+vim.opt.fixendofline = false
+vim.opt.binary = true -- Treat the file as binary (required for above)
 
 -- Normal mode mappings
 keymap('n', '<leader>bb', '<cmd>tabnew<CR>', { desc = "New tab" })
@@ -21,6 +30,10 @@ keymap('n', '<C-/>', function() require("Comment.api").toggle.linewise.current()
 keymap('n', '<C-s>', '1z=', { desc = "Correct mistyped word" })
 keymap('n', '<C-g>', ':FloatermNew --height=1.0 --width=1.0 lazygit<CR>', { desc = "Open Lazygit" })
 keymap('n', '<C-x>', ':bd<CR>', { desc = "Close buffer" })
+keymap('n', '<C-j>', ':bprev<CR>', { desc = "Previous buffer" })
+keymap('n', '<C-k>', ':bnext<CR>', { desc = "Next buffer" })
+keymap('n', '<C-h>', '<C-w>h', { desc = "Go to left widnow" })
+keymap('n', '<C-l>', '<C-w>l', { desc = "Go to right widnow" })
 keymap('n', '<C-e>', ':tabedit %<CR>', { desc = "Open file in new tab" })
 keymap('n', '<C-f>', ':RgRaw -i ', { desc = "Search with fzf" })
 
